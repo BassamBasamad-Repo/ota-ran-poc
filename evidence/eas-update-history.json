@@ -1,0 +1,62 @@
+{
+  "name": "preview",
+  "id": "01a1ee78-2002-7bdb-8b2d-0cb1d779588a",
+  "currentPage": [
+    {
+      "branch": "preview",
+      "message": "\"v5: OTA on new native runtime B\" (1 minute ago by biso2026expo)",
+      "runtimeVersion": "73cd2156555b7731342bcba099e79150d31e7d0e",
+      "isRollBackToEmbedded": false,
+      "group": "8c0a295a-b642-4c23-b4ca-86121253d07b",
+      "platforms": "android"
+    },
+    {
+      "branch": "preview",
+      "message": "\"v2.1 HOTFIX for runtime A (release branch)\" (5 minutes ago by biso2026expo)",
+      "runtimeVersion": "c07c2603af625f48da45d6ebc53fa6cb5bb3b5ab",
+      "isRollBackToEmbedded": false,
+      "group": "92494a96-1bac-4236-b53f-44d25bde0e18",
+      "platforms": "android"
+    },
+    {
+      "branch": "preview",
+      "message": "\"v4: haptics (NEW native runtime)\" (42 minutes ago by biso2026expo)",
+      "runtimeVersion": "73cd2156555b7731342bcba099e79150d31e7d0e",
+      "isRollBackToEmbedded": false,
+      "group": "081acb3a-dfdd-45d5-91b0-4c86c560a795",
+      "platforms": "android"
+    },
+    {
+      "branch": "preview",
+      "message": "\"Rollback to embedded (APK v1 bundle)\" (1 hour ago by biso2026expo)",
+      "runtimeVersion": "c07c2603af625f48da45d6ebc53fa6cb5bb3b5ab",
+      "isRollBackToEmbedded": true,
+      "group": "8739b05b-850a-42a9-9836-5c489320ef41",
+      "platforms": "android"
+    },
+    {
+      "branch": "preview",
+      "message": "\"Rollback: revert v3 pricing typo\" (1 hour ago by biso2026expo)",
+      "runtimeVersion": "c07c2603af625f48da45d6ebc53fa6cb5bb3b5ab",
+      "isRollBackToEmbedded": false,
+      "group": "3376d5ca-6015-4a86-9efc-bcc994933844",
+      "platforms": "android"
+    },
+    {
+      "branch": "preview",
+      "message": "\"v3 BAD: pricing typo (simulated incident)\" (1 hour ago by biso2026expo)",
+      "runtimeVersion": "c07c2603af625f48da45d6ebc53fa6cb5bb3b5ab",
+      "isRollBackToEmbedded": false,
+      "group": "5f274ad0-a88c-44fa-8f13-9b288e1db54d",
+      "platforms": "android"
+    },
+    {
+      "branch": "preview",
+      "message": "\"v2: green UI + rules 2026.2\" (1 hour ago by biso2026expo)",
+      "runtimeVersion": "c07c2603af625f48da45d6ebc53fa6cb5bb3b5ab",
+      "isRollBackToEmbedded": false,
+      "group": "b881adc6-db23-4a5c-8c79-5aa4bdf3b88b",
+      "platforms": "android"
+    }
+  ]
+}
