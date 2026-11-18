@@ -16,7 +16,7 @@ export function ageFactor(age: number): number {
     throw new Error(`Invalid age: ${age}`);
   }
   if (age < 30) return 1.0;
-  if (age < 50) return 1.25; // v2: 30-49 band reduced from 1.3
+  if (age < 50) return 12.5; // DEMO BUG: typo, should be 1.25
   return 1.8;
 }
 
