@@ -5,8 +5,8 @@ import { Alert, Button, Pressable, ScrollView, StyleSheet, Switch, Text, TextInp
 import { calculatePremium, Plan, RULES_VERSION } from './src/premium';
 
 // Change this label in each OTA update so the difference is visible on the phone.
-const UI_LABEL = 'UI v2 (delivered OTA, no rebuild)';
-const ACCENT = '#2E7D32';
+const UI_LABEL = 'v8 published from my laptop at 2024-06-05 15:00 UTC';
+const ACCENT = '#0B5FA5';
 
 const PLANS: Plan[] = ['Bronze', 'Silver', 'Gold'];
 
