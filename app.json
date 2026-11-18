@@ -22,6 +22,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bd6cba21-9c3d-460b-a27d-61d1dba783bc"
+      }
+    },
+    "owner": "biso2026expo",
+    "updates": {
+      "url": "https://u.expo.dev/bd6cba21-9c3d-460b-a27d-61d1dba783bc"
+    },
+    "runtimeVersion": {
+      "policy": "fingerprint"
     }
   }
 }
