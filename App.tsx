@@ -6,8 +6,8 @@ import { Alert, Button, Pressable, ScrollView, StyleSheet, Switch, Text, TextInp
 import { calculatePremium, Plan, RULES_VERSION } from './src/premium';
 
 // Change this label in each OTA update so the difference is visible on the phone.
-const UI_LABEL = 'v7 BAD release: pricing typo (demo)';
-const ACCENT = '#C62828';
+const UI_LABEL = 'v8 published by GitHub Actions';
+const ACCENT = '#0B5FA5';
 
 const PLANS: Plan[] = ['Bronze', 'Silver', 'Gold'];
 
