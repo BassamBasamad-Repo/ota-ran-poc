@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
+import * as Haptics from 'expo-haptics';
 import * as Updates from 'expo-updates';
 import { useState } from 'react';
 import { Alert, Button, Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { calculatePremium, Plan, RULES_VERSION } from './src/premium';
 
 // Change this label in each OTA update so the difference is visible on the phone.
-const UI_LABEL = 'v8 published from my laptop at 2024-06-05 15:00 UTC';
+const UI_LABEL = 'v8 published by GitHub Actions';
 const ACCENT = '#0B5FA5';
 
 const PLANS: Plan[] = ['Bronze', 'Silver', 'Gold'];
@@ -55,7 +56,7 @@ export default function App() {
           {PLANS.map((p) => (
             <Pressable
               key={p}
-              onPress={() => setPlan(p)}
+              onPress={() => { Haptics.selectionAsync(); setPlan(p); }}
               style={[styles.chip, plan === p && { backgroundColor: ACCENT }]}>
               <Text style={plan === p ? styles.chipTextOn : undefined}>{p}</Text>
             </Pressable>

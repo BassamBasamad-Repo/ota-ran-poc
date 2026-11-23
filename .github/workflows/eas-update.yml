@@ -1,0 +1,50 @@
+name: EAS Update – preview channel
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Typecheck & unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm test
+
+  publish:
+    name: Publish EAS Update
+    needs: test
+    environment: production-approval
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: expo/expo-github-action@v9
+        with:
+          eas-version: 27.10.0
+          packager: npm
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+      - name: Print Android fingerprint
+        run: npx expo-updates fingerprint:generate --platform android
+      - name: Publish OTA update
+        env:
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          eas update \
+            --channel preview \
+            --environment preview \
+            --platform android \
+            --message "$COMMIT_MSG" \
+            --non-interactive
