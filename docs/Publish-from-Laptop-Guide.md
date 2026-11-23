@@ -14,8 +14,8 @@ It takes about 20 minutes the first time and about 2 minutes after that.
 |---|---|
 | **Node.js 22 LTS** | https://nodejs.org → download the **LTS** installer → Next, Next, Finish |
 | **Git** | https://git-scm.com/downloads (Windows: keep the defaults) |
-| **The project** | `ota-poc-source.zip` (sent to you in this session) |
-| **Your Expo login** | Your expo.dev username and password (account `biso2026expo`) |
+| **The project** | Access to https://github.com/BassamBasamad-Repo/ota-ran-poc (accept the collaborator invite) |
+| **Your Expo login** | Your own expo.dev account, invited as a member of the `biso2026expos-team` team (accept the email invite first) |
 | **A code editor** (optional) | VS Code: https://code.visualstudio.com |
 
 Check the installation in a **new** terminal (Windows: *Command Prompt*; Mac: *Terminal*):
@@ -33,12 +33,18 @@ git --version
 
 ---
 
-## 1. Unzip the project
+## 1. Get the project
 
-Unzip `ota-poc-source.zip` into a simple folder, for example:
+Clone the repo into a simple folder, for example:
 
 - Windows: `C:\dev\ota-poc`
 - Mac: `~/dev/ota-poc`
+
+```bash
+git clone https://github.com/BassamBasamad-Repo/ota-ran-poc.git C:\dev\ota-poc
+```
+
+(Mac: `git clone https://github.com/BassamBasamad-Repo/ota-ran-poc.git ~/dev/ota-poc`)
 
 Then go into it:
 
@@ -47,6 +53,8 @@ cd C:\dev\ota-poc
 ```
 
 (Mac: `cd ~/dev/ota-poc`)
+
+Already cloned? Get the latest with `git pull` instead.
 
 ---
 
@@ -73,7 +81,7 @@ Enter your expo.dev username and password. Then check it worked:
 npx eas-cli@27.10.0 whoami
 ```
 
-✅ It should show `biso2026expo`.
+✅ It should show your username, with `biso2026expos-team` listed under **Accounts**. If the team is missing, accept the invite at expo.dev first.
 
 > `npx eas-cli@27.10.0` runs Expo's command-line tool (EAS CLI) without installing it permanently. The version is pinned to the one used in the POC.
 
@@ -81,11 +89,11 @@ npx eas-cli@27.10.0 whoami
 
 ## 4. ⚠️ Switch to the code that matches your phone (most important step)
 
-Your phone has the **new APK (runtime B)**. The zip opens on the `master` branch, which matches the **old APK (runtime A)**.
-**If you publish from the wrong branch, your phone will say "Up to date" and ignore the update.** That's the compatibility protection we proved in the POC.
+Your phone must have the **demo APK built from `master`**. Older APKs (runtime A or B) have a different fingerprint.
+**If you publish code whose fingerprint doesn't match the phone's APK, the phone will say "Up to date" and ignore the update.** That's the compatibility protection we proved in the POC.
 
 ```bash
-git switch demo-runtime-b
+git switch master
 ```
 
 Then check that the native fingerprint matches your phone:
@@ -98,19 +106,20 @@ Look for `"hash"` in the output:
 
 | Hash starts with | Matches | OK to publish for your phone? |
 |---|---|---|
-| **`73cd2156`** | New APK (runtime B), on your phone now | ✅ Yes |
-| `c07c2603` | Old APK (runtime A), no longer installed | ❌ Switch branch |
+| **`dfdfce9f`** | Demo APK built from `master` (current) | ✅ Yes |
+| `73cd2156` | Old runtime B APK (before the project moved to `biso2026expos-team`) | ❌ Install the new APK |
+| `c07c2603` | Old runtime A APK | ❌ Install the new APK |
+
+> If the hash is different from all of these, a native change (new package or `app.json` native field) was made: a new APK must be built before OTA updates will reach the phone.
 
 Branches in the project:
 
 | Branch | Runtime | Content |
 |---|---|---|
-| `master` | A | v2 code + evidence + reports |
+| `master` | Current | Demo branch: publish from here |
 | `release/1.0-hotfix` | A | v2.1 hotfix |
 | `native-v4` | B | v5 teal (with haptics) |
-| `demo-runtime-b` | B | Last demo state (v7 red with the pricing bug) |
-
-> `demo-runtime-b` currently contains the **bad v7 code** (red, typo 12.5). Fix it in step 5 before publishing anything new.
+| `demo-runtime-b` | B | Earlier demo state, merged into `master` |
 
 ---
 
@@ -125,7 +134,7 @@ const UI_LABEL = 'v8 published from my laptop';
 const ACCENT = '#0B5FA5';   // banner colour (hex)
 ```
 
-**b) Change the business rule:** in `src/premium.ts`, fix the demo typo back to the correct value:
+**b) Change the business rule (optional):** in `src/premium.ts`, the 30–49 age factor. The correct value is:
 
 ```ts
 if (age < 50) return 1.25;
@@ -146,7 +155,7 @@ npx tsc --noEmit
 
 ✅ `npm test` must show `# fail 0`, and `tsc` must print nothing.
 
-> **Reminder from the POC:** `eas update` does **not** run tests. It publishes whatever you give it. In production the CI pipeline enforces this step, but on your laptop it's up to you.
+> **Reminder from the POC:** `eas update` does **not** run tests. It publishes whatever you give it. There is no CI pipeline in this demo, so it's up to you.
 
 ---
 
@@ -259,7 +268,7 @@ Then **revoke the access token** at https://expo.dev/settings/access-tokens (the
 cd C:\dev\ota-poc
 ```
 ```bash
-git switch demo-runtime-b
+git switch master
 ```
 ```bash
 npm test
